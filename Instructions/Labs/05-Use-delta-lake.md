@@ -61,7 +61,7 @@ The script provisions an Azure Synapse Analytics workspace and an Azure Storage 
 3. On the left side of Synapse Studio, use the **&rsaquo;&rsaquo;** icon to expand the menu - this reveals the different pages within Synapse Studio that you'll use to manage resources and perform data analytics tasks.
 4. On the **Data** page, view the **Linked** tab and verify that your workspace includes a link to your Azure Data Lake Storage Gen2 storage account, which should have a name similar to **synapse*xxxxxxx* (Primary - datalake*xxxxxxx*)**.
 5. Expand your storage account and verify that it contains a file system container named **files**.
-6. Select the **files** container, and note that it contains folders named **products** and **synapse**. The **synapse** folder is used by Azure Synapse, and the **products** folder contains the data you are going to work with in this exercise.
+6. Select the **files** container, and note that it contains a folder named **products**. This folder contains the data you are going to work with in this exercise.
 7. Open the **products** folder, and observe that it contains a file named **products.csv**.
 8. Select **products.csv**, and then in the **New notebook** list on the toolbar, select **Load to DataFrame**.
 9. In the **Notebook 1** pane that opens, in the **Attach to** list, select the **sparkxxxxxxx** Spark pool and ensure that the **Language** is set to **PySpark (Python)**.
