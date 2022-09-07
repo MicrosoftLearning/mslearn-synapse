@@ -70,7 +70,7 @@ Before you can set up Azure Synapse Link for your Azure SQL Database, you must e
 
     > **Note**: This rule allows access to your server from any Internet-connected computer. We're enabling this to simplify the exercise, but in a production scenario you should restrict access to only network addresses that need to use your databases.
 
-5. Use the **Save** button to sve your configuration change:
+5. Use the **Save** button to save your configuration change:
 
     ![Screenshot of the Azure SQL server Networking page in the Azure portal.](./images/sqldb-network.png)
 
@@ -125,7 +125,7 @@ Now you're ready to configure Azure Synapse Link for SQL in your Synapse Analyti
         - **User name**: SQLUser
         - **Password**: *The password you set when running the setup script*
 
-        *Use the **Test Connection** option to ensure your connection settings are correct before continuing!*
+        *Use the **Test Connection** option to ensure your connection settings are correct before continuing! Afterwards, click **Create**.*
 
     - **Source tables**: Select the following tables:
         - **SalesLT.Customer**
@@ -135,6 +135,8 @@ Now you're ready to configure Azure Synapse Link for SQL in your Synapse Analyti
 
         *Continue to configure the following settings:*
 
+    > **Note**: Some target tables display an error because the data in the source table is not compatible with the default structure type of *clustered columnstore index*.
+
     - **Target pool**: *Select your **sqlxxxxxxx** dedicated SQL pool*
 
         *Continue to configure the following settings:*
@@ -142,8 +144,9 @@ Now you're ready to configure Azure Synapse Link for SQL in your Synapse Analyti
     - **Link connection name**: sql-adventureworkslt-conn
     - **Core count**: 4 (+ 4 Driver cores)
 
-2. In the **sql-adventureworkslt-conn** page that is created, view the table mappings that have been created. You can use the **Properties** button (which looks similar to **&#128463;<sub>*</sub>**) hide the **Properties** pane to make it easier to see eveything. Some target tables display an error because the data in the source table is not compatible with the default structure type of *clustered columnstore index*.
-3. Modify the table mappings as follows:
+2. In the **sql-adventureworkslt-conn** page that is created, view the table mappings that have been created. You can use the **Properties** button (which looks similar to **&#128463;<sub>*</sub>**) to hide the **Properties** pane to make it easier to see eveything. 
+
+3. Modify thes structure types in the table mappings as follows:
 
     | Source table | Target table | Distribution type | Distribution column | Structure type |
     |--|--|--|--|--|
@@ -152,7 +155,7 @@ Now you're ready to configure Azure Synapse Link for SQL in your Synapse Analyti
     | SalesLT.SalesOrderDetail **&#8594;** | \[SalesLT] . \[SalesOrderDetail] | Round robin | - | Clustered columnstore index |
     | SalesLT.SalesOrderHeader **&#8594;** | \[SalesLT] . \[SalesOrderHeader] | Round robin | - | Heap |
 
-4. At the top of the **sql-adventureworkslt-conn** page that is created, use the **&#9655; Start** button to start synchronization. When prompted, selecy **OK** to publish and start the link connection.
+4. At the top of the **sql-adventureworkslt-conn** page that is created, use the **&#9655; Start** button to start synchronization. When prompted, select **OK** to publish and start the link connection.
 5. After starting the connection, on the **Monitor** page, view the **Link connections** tab and select the **sql-adventureworkslt-conn** connection. You can use the **&#8635; Refresh** button to update the status periodically. It may take several minutes to complete the initial snapshot copy process and start replicating - after that, all changes in the source database tables will be automatically replayed in the synchronized tables.
 
 ### View the replicated data
